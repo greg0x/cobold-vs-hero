@@ -7,6 +7,11 @@ from dataclasses import dataclass
 from typing import Any
 
 
+# Cloudflare bot protection on the preview zone rejects the default
+# Python-urllib user agent with 403, so every request must identify itself.
+USER_AGENT = "cobold-testautomation"
+
+
 @dataclass(frozen=True)
 class BriefingRequest:
     change_title: str
@@ -32,6 +37,7 @@ class CoboldBriefingClient:
     def get_status(self) -> dict[str, Any]:
         http_request = urllib.request.Request(
             f"{self.base_url}/api/cobold-vs-hero/status",
+            headers={"user-agent": USER_AGENT},
             method="GET",
         )
 
@@ -45,7 +51,7 @@ class CoboldBriefingClient:
         http_request = urllib.request.Request(
             f"{self.base_url}/api/cobold-vs-hero/briefing",
             data=body,
-            headers={"content-type": "application/json"},
+            headers={"content-type": "application/json", "user-agent": USER_AGENT},
             method="POST",
         )
 
