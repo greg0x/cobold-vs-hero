@@ -6,6 +6,8 @@
 
 `GET /api/cobold-vs-hero/status`
 
+`POST /api/cobold-vs-hero/briefings/{briefingId}/evidence/{evidenceId}/{attach|approve|reject}`
+
 Canonical contract:
 
 - `contracts/openapi/cobold-briefing-api.yaml`
@@ -27,7 +29,7 @@ Representative examples:
 | `changeTitle` | string | yes | Short name for the proposed delivery move. |
 | `changeDescription` | string | yes | Summary of the delivery intent. |
 | `affectedSurfaces` | string[] | yes | Any of `backend`, `bff`, `frontend`, `contract`, `testing`. |
-| `providedEvidence` | string[] | yes | Evidence already available for review, including `rollback` when production release recovery is already known. |
+| `providedEvidence` | string[] | yes | Deprecated compatibility field; new evidence starts as `planned`. |
 | `riskFlags` | string[] | yes | Any of `production`, `customer-data`, `auth`, `payment`, `unclear-scope`. |
 
 ## Backend Response
@@ -41,6 +43,21 @@ Representative examples:
 | `stopCondition` | string | When the team should stop rather than implement. |
 | `heroNextStep` | string | Recommended next delivery action. |
 | `reviewMatrix` | object[] | One row per affected surface. |
+| `readinessVerdict` | string | `READY` only when every required item is `approved`; otherwise `NOT_READY`. |
+| `evidenceItems` | object[] | State, URL, reviewer role, and rejection comment per required item. |
+| `gaps` | object[] | Next step and responsible party per non-approved item. |
+
+## Evidence Approval State Machine
+
+- `planned -> attached`: developer only, non-blank URL required.
+- `attached -> approved`: assigned reviewer role only.
+- `attached -> planned`: assigned reviewer role only, non-blank rejection comment required.
+- Any other transition returns a conflict response.
+- Planned gaps say `csatolásra vár: Fejlesztő`; attached gaps say
+  `jóváhagyásra vár: <role>`.
+- Bruno smoke and backend tests use API reviewer; browser screenshots use UI
+  reviewer. HLD/LLD use the Tech lead for production or authentication risk,
+  otherwise the API reviewer acts as the designated peer reviewer.
 
 Review matrix row:
 
