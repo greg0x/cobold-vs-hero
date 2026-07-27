@@ -22,7 +22,7 @@ older free-text review-signal-only flow.
 - The numbered historical workshop branches remain useful as history, but the
   main repo describes the current baseline.
 - Documentation and tests should prefer matrix language: affected surfaces,
-  provided evidence, missing evidence, stop condition, and review matrix rows.
+  evidence state, missing evidence, stop condition, and review matrix rows.
 
 ## D02 - Backend Owns Readiness Rules
 

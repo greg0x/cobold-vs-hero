@@ -245,7 +245,6 @@ class CoboldVsHeroController {
 			@NotBlank String changeTitle,
 			@NotBlank String changeDescription,
 			@NotEmpty List<String> affectedSurfaces,
-			@NotNull List<String> providedEvidence,
 			@NotNull List<String> riskFlags) {
 	}
 

@@ -17,7 +17,6 @@ class BriefingRequest:
     change_title: str
     change_description: str
     affected_surfaces: list[str]
-    provided_evidence: list[str]
     risk_flags: list[str]
 
     def to_payload(self) -> dict[str, str | list[str]]:
@@ -25,7 +24,6 @@ class BriefingRequest:
             "changeTitle": self.change_title,
             "changeDescription": self.change_description,
             "affectedSurfaces": self.affected_surfaces,
-            "providedEvidence": self.provided_evidence,
             "riskFlags": self.risk_flags,
         }
 

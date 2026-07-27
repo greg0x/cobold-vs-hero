@@ -20,7 +20,6 @@ export class BriefingService {
   async createBriefing(request: BriefingRequestDto): Promise<BriefingResponseDto> {
     logInfo('bff.briefing.requested', {
       affectedSurfaceCount: request.affectedSurfaces.length,
-      providedEvidenceCount: request.providedEvidence.length,
       riskFlagCount: request.riskFlags.length,
     });
 

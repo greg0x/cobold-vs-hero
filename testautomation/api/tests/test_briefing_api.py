@@ -7,7 +7,6 @@ def backend_briefing(client: CoboldBriefingClient) -> dict:
             change_title="Backend evidence approval",
             change_description="Review one focused backend test.",
             affected_surfaces=["backend"],
-            provided_evidence=[],
             risk_flags=[],
         )
     )
@@ -58,7 +57,6 @@ def test_production_design_evidence_is_assigned_to_tech_lead() -> None:
             change_title="Production design",
             change_description="Change backend and frontend in production.",
             affected_surfaces=["backend", "frontend"],
-            provided_evidence=[],
             risk_flags=["production"],
         )
     )

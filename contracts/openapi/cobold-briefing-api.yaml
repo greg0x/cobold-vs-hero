@@ -123,7 +123,7 @@ components:
       enum: [backend-test, bruno-smoke, dps-testautomation, browser-screenshot, hld, lld, rollback]
     BriefingRequest:
       type: object
-      required: [changeTitle, changeDescription, affectedSurfaces, providedEvidence, riskFlags]
+      required: [changeTitle, changeDescription, affectedSurfaces, riskFlags]
       properties:
         changeTitle: { type: string, minLength: 1 }
         changeDescription: { type: string, minLength: 1 }
@@ -131,11 +131,6 @@ components:
           type: array
           minItems: 1
           items: { type: string, enum: [backend, bff, frontend, contract, testing] }
-        providedEvidence:
-          type: array
-          deprecated: true
-          description: Kept for request compatibility; new briefings always start with planned evidence.
-          items: { $ref: '#/components/schemas/EvidenceId' }
         riskFlags:
           type: array
           items: { type: string, enum: [production, customer-data, auth, payment, unclear-scope] }

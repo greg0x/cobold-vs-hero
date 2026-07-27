@@ -2,7 +2,6 @@ export interface BriefingRequestDto {
   changeTitle: string;
   changeDescription: string;
   affectedSurfaces: string[];
-  providedEvidence: string[];
   riskFlags: string[];
 }
 

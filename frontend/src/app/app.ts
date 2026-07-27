@@ -144,7 +144,6 @@ export class App implements OnInit {
         affectedSurfaces: this.affectedSurfaces,
         changeDescription: this.changeDescription,
         changeTitle: this.changeTitle,
-        providedEvidence: [],
         riskFlags: this.riskFlags,
       })
       .subscribe({

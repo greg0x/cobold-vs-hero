@@ -29,7 +29,6 @@ Representative examples:
 | `changeTitle` | string | yes | Short name for the proposed delivery move. |
 | `changeDescription` | string | yes | Summary of the delivery intent. |
 | `affectedSurfaces` | string[] | yes | Any of `backend`, `bff`, `frontend`, `contract`, `testing`. |
-| `providedEvidence` | string[] | yes | Deprecated compatibility field; new evidence starts as `planned`. |
 | `riskFlags` | string[] | yes | Any of `production`, `customer-data`, `auth`, `payment`, `unclear-scope`. |
 
 ## Backend Response
@@ -39,7 +38,7 @@ Representative examples:
 | `signal` | string | `truce`, `sparring`, or `shield-wall`. |
 | `headline` | string | Short human-readable readiness summary. |
 | `requiredEvidence` | string[] | Evidence expected from surfaces and risk flags. |
-| `missingEvidence` | string[] | Required evidence not present in `providedEvidence`. |
+| `missingEvidence` | string[] | Required evidence that has not yet been approved. |
 | `stopCondition` | string | When the team should stop rather than implement. |
 | `heroNextStep` | string | Recommended next delivery action. |
 | `reviewMatrix` | object[] | One row per affected surface. |
@@ -157,7 +156,7 @@ then probes the backend status endpoint and returns both service entries.
 - Blank `changeTitle` is invalid.
 - Blank `changeDescription` is invalid.
 - Empty `affectedSurfaces` is invalid.
-- `providedEvidence` and `riskFlags` are required arrays and may be empty.
+- `riskFlags` is a required array and may be empty.
 - OpenAPI limits known surfaces, evidence values, and risk flags to the listed
   enums.
 

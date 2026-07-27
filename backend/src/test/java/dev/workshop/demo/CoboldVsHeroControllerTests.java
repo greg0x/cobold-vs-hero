@@ -94,7 +94,7 @@ class CoboldVsHeroControllerTests {
 			CoboldVsHeroController.BriefingResponse briefing = controller.createBriefing(
 					new CoboldVsHeroController.BriefingRequest(
 							"Risky multi-surface change", "Change backend and frontend behavior.",
-							List.of("backend", "frontend"), List.of(), List.of(risk)));
+							List.of("backend", "frontend"), List.of(risk)));
 
 			assertThat(item(briefing, "hld").approverRole()).isEqualTo("tech-lead");
 			assertThat(item(briefing, "lld").approverRole()).isEqualTo("tech-lead");
@@ -103,13 +103,13 @@ class CoboldVsHeroControllerTests {
 		CoboldVsHeroController.BriefingResponse peerReview = controller.createBriefing(
 				new CoboldVsHeroController.BriefingRequest(
 						"Normal multi-surface change", "Change backend and frontend behavior.",
-						List.of("backend", "frontend"), List.of(), List.of()));
+						List.of("backend", "frontend"), List.of()));
 		assertThat(item(peerReview, "hld").approverRole()).isEqualTo("api-reviewer");
 	}
 
 	private CoboldVsHeroController.BriefingResponse backendBriefing(List<String> risks) {
 		return controller.createBriefing(new CoboldVsHeroController.BriefingRequest(
-				"Backend change", "Add focused backend behavior.", List.of("backend"), List.of(), risks));
+				"Backend change", "Add focused backend behavior.", List.of("backend"), risks));
 	}
 
 	private CoboldVsHeroController.EvidenceItem item(
