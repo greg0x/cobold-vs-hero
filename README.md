@@ -6,6 +6,9 @@ Small umbrella-style demo repo for the Pragmatic AI Engineer workshop. It keeps
 the same delivery shape as the participant environment without copying
 enterprise code or legacy complexity.
 
+pixi is live on both Linear and GitHub, so workshop changes can start from
+either issue surface and follow the same berek delivery workflow.
+
 Hungarian version: [README.hu.md](README.hu.md).
 
 The theme is intentionally light:
